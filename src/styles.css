@@ -2,3 +2,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Estilos para pantallas menores a 640px */
+@media (max-width: 640px) {
+  .sm\:px-user-6 {
+    padding-left: 1.5rem/* 24px */;
+    padding-right: 1.5rem/* 24px */;
+  }
+}
