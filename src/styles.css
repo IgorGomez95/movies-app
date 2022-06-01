@@ -10,3 +10,10 @@
     padding-right: 1.5rem/* 24px */;
   }
 }
+
+/* Ocultar componente en pantallas menores de 768px */
+@media (max-width: 768px) {
+  .sm\:hidden-user {
+    display: none;
+  }
+}

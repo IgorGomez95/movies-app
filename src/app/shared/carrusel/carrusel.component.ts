@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-hero',
-  templateUrl: './hero.component.html',
+  selector: 'app-carrusel',
+  templateUrl: './carrusel.component.html',
   styles: [
   ]
 })
-export class HeroComponent implements OnInit {
+export class CarruselComponent implements OnInit {
 
   constructor() { }
 
