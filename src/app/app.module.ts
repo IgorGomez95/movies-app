@@ -1,29 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// Modulos
 import { AppRoutingModule } from './app-routing.module';
+import { PagesModule } from './pages/pages.module';
 
+// Componentes
 import { AppComponent } from './app.component';
 import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { HomeComponent } from './pages/home/home.component';
-import { WatchlistComponent } from './pages/watchlist/watchlist.component';
-import { PagesComponent } from './pages/pages.component';
-import { CarruselComponent } from './shared/carrusel/carrusel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NopagefoundComponent,
-    HeaderComponent,
-    HomeComponent,
-    WatchlistComponent,
-    PagesComponent,
-    CarruselComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

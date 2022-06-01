@@ -1,21 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './pages/home/home.component';
+// Modulos
+import { PagesRoutingModule } from './pages/pages.routing';
+
+// Componentes
 import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
-import { PagesComponent } from './pages/pages.component';
-import { WatchlistComponent } from './pages/watchlist/watchlist.component';
 
 const routes: Routes = [
-  {
-    path:'',
-    component: PagesComponent,
-    children:[
-      {path:'home', component: HomeComponent},
-      {path:'watchlist', component: WatchlistComponent},
-      {path: '', redirectTo: '/home', pathMatch: 'full'},
-    ]
-  },
 
   {path: '**', component: NopagefoundComponent},
 ];
@@ -23,7 +15,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    PagesRoutingModule
   ],
   exports: [RouterModule]
 })
