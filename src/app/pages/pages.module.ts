@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -25,7 +26,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ]
 })
 export class PagesModule { }

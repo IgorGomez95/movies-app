@@ -1,66 +1,14 @@
 <div id="carouselExampleIndicators" class="carousel slide relative" data-bs-ride="carousel">
-  <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
-    <button
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide-to="0"
-      class="active"
-      aria-current="true"
-      aria-label="Slide 1"
-    ></button>
-    <button
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide-to="1"
-      aria-label="Slide 2"
-    ></button>
-    <button
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide-to="2"
-      aria-label="Slide 3"
-    ></button>
-  </div>
   <div class="carousel-inner relative w-full overflow-hidden">
-    <div class="carousel-item active float-left w-full">
+    <div *ngFor="let movie of popularMovies; index as i;" [class]="i === 0 ? 'active':''" class="carousel-item float-left w-full">
       <div class="container mx-auto flex px-28 py-16 md:flex-row flex-col items-center" style="background-image: url('./assets/image_blur_bg.jpg');background-repeat: no-repeat;background-size: cover;-webkit-background-size: cover;background-position: center center;height: auto;
       max-width: 100%">
         <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 flex flex-col md:items-end md:text-right items-end text-right">
-          <img class="object-cover object-center rounded" alt="hero" src="https://image.tmdb.org/t/p/w342/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg">
+          <img class="object-cover object-center rounded" alt="hero" [src]="imgUrl + movie.poster_path">
         </div>
         <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Doctor Strange in the Multiverse of Madness</h1>
-          <p class="mb-8 leading-relaxed sm:hidden-user">Doctor Strange, además de recibir ayuda de aliados místicos nuevos y otros ya conocidos, atraviesa las alucinantes y peligrosas realidades alternativas del Multiverso para enfrentarse a un nuevo y misterioso adversario.</p>
-          <div class="flex justify-center">
-            <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Ver más...</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item float-left w-full">
-      <div class="container mx-auto flex px-28 py-16 md:flex-row flex-col items-center" style="background-image: url('./assets/image_blur_bg.jpg');background-repeat: no-repeat;background-size: cover;-webkit-background-size: cover;background-position: center center;height: auto;
-      max-width: 100%">
-        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 flex flex-col md:items-end md:text-right items-end text-right">
-          <img class="object-cover object-center rounded" alt="hero" src="https://image.tmdb.org/t/p/w342/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg">
-        </div>
-        <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Doctor Strange in the Multiverse of Madness</h1>
-          <p class="mb-8 leading-relaxed sm:hidden-user">Doctor Strange, además de recibir ayuda de aliados místicos nuevos y otros ya conocidos, atraviesa las alucinantes y peligrosas realidades alternativas del Multiverso para enfrentarse a un nuevo y misterioso adversario.</p>
-          <div class="flex justify-center">
-            <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Ver más...</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item float-left w-full">
-      <div class="container mx-auto flex px-28 py-16 md:flex-row flex-col items-center" style="background-image: url('./assets/image_blur_bg.jpg');background-repeat: no-repeat;background-size: cover;-webkit-background-size: cover;background-position: center center;height: auto;
-      max-width: 100%">
-        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 flex flex-col md:items-end md:text-right items-end text-right">
-          <img class="object-cover object-center rounded" alt="hero" src="https://image.tmdb.org/t/p/w342/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg">
-        </div>
-        <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Doctor Strange in the Multiverse of Madness</h1>
-          <p class="mb-8 leading-relaxed sm:hidden-user">Doctor Strange, además de recibir ayuda de aliados místicos nuevos y otros ya conocidos, atraviesa las alucinantes y peligrosas realidades alternativas del Multiverso para enfrentarse a un nuevo y misterioso adversario.</p>
+          <h1 class="title-font sm:text-4xl text-lg mb-4 font-medium text-gray-900">{{ movie.original_title }}</h1>
+          <p class="mb-8 leading-relaxed sm:hidden-user">{{ movie.overview }}</p>
           <div class="flex justify-center">
             <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Ver más...</button>
           </div>
@@ -74,7 +22,7 @@
     data-bs-target="#carouselExampleIndicators"
     data-bs-slide="prev"
   >
-    <span class="carousel-control-prev-icon inline-block bg-no-repeat bg-black" aria-hidden="true"></span>
+    <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
   <button
@@ -83,7 +31,7 @@
     data-bs-target="#carouselExampleIndicators"
     data-bs-slide="next"
   >
-    <span class="carousel-control-next-icon inline-block bg-no-repeat bg-black" aria-hidden="true"></span>
+    <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
 </div>

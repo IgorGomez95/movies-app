@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { CarruselComponent } from './carrusel/carrusel.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -16,7 +17,8 @@ import { CarruselComponent } from './carrusel/carrusel.component';
     CarruselComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ]
 })
 export class SharedModule { }
