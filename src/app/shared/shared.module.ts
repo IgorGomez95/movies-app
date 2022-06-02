@@ -1,20 +1,28 @@
 // Módulos para los componentes shared de la aplicación.
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { HttpClientModule } from '@angular/common/http';
+
 import { HeaderComponent } from './header/header.component';
 import { CarruselComponent } from './carrusel/carrusel.component';
-import { HttpClientModule } from '@angular/common/http';
+import { CardComponent } from './card/card.component';
+import { GridComponent } from './grid/grid.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    CarruselComponent
+    CarruselComponent,
+    CardComponent,
+    GridComponent
   ],
   exports:[
     HeaderComponent,
-    CarruselComponent
+    CarruselComponent,
+    CardComponent,
+    GridComponent
   ],
   imports: [
     CommonModule,

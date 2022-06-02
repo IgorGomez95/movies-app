@@ -1,6 +1,25 @@
 <div class="mx-auto pb-6">
-  <app-carrusel></app-carrusel>
-  <div class="px-10 py-6 sm:px-user-6 sm:px-10 lg:px-40">
-    <p>home works!</p>
+  <div *ngIf="popularMovies.length > 0">
+    <app-carrusel [popularMovies]="popularMovies" [imgUrl]="imgUrl"></app-carrusel>
+  </div>
+  <div class="px-10 py-6 sm:px-user-6 sm:px-10 lg:px-36">
+
+    <nav>
+      <div class="container px-1 py-4 mx-auto">
+          <div class="flex items-center justify-between">
+              <div class="flex-1 flex items-center justify-between">
+                  <div class="flex -mx-4 flex-row items-center md:mx-8">
+                      <a href="#" class="px-2 py-1 mx-1 md:mx-3 mt-2 text-sm font-bold text-teal-800 transition-colors duration-200 transform rounded-md md:mt-0 bg-sky-200">Mejor Valoradas</a>
+                      <a href="#" class="px-2 py-1 mx-1 md:mx-3 mt-2 text-sm font-bold text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0  hover:bg-gray-300">Más Populares</a>
+                      <a href="#" class="px-2 py-1 mx-1 md:mx-3 mt-2 text-sm font-bold text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 hover:bg-gray-300">En Cines</a>
+                      <a href="#" class="px-2 py-1 mx-1 md:mx-3 mt-2 text-sm font-bold text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 hover:bg-gray-300">Próximamente</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </nav>
+
+    <app-grid></app-grid>
+
   </div>
 </div>
