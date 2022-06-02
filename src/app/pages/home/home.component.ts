@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Movie } from 'src/app/interfaces/movies-response';
 import { ApiService } from 'src/app/services/api.service';
 import { EnvService } from 'src/app/services/env.service';
+import { ShareMoviesService } from '../../services/share-movies.service';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private api: ApiService,
-    private env: EnvService
+    private env: EnvService,
+    private shareMoviesService: ShareMoviesService
   ) {
     this.imgUrl = this.env.IMG_URL;
   }
@@ -44,6 +46,7 @@ export class HomeComponent implements OnInit {
     this.api.getTopRatedMovies()
       .subscribe( movies => {
         this.movies.push(...movies);
+        this.shareMoviesService.shareMoviesObservableData = this.movies;
         console.log(this.movies);
       });
   }
