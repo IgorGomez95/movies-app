@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HttpClientModule } from '@angular/common/http';
+import { RatingModule } from 'ng-starrating';
 
 import { HeaderComponent } from './header/header.component';
 import { CarruselComponent } from './carrusel/carrusel.component';
@@ -28,7 +29,8 @@ import { PipesModule } from '../pipes/pipes.module';
   imports: [
     CommonModule,
     HttpClientModule,
-    PipesModule
+    PipesModule,
+    RatingModule
   ]
 })
 export class SharedModule { }
