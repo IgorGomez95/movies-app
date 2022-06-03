@@ -9,7 +9,6 @@ import { Movie } from 'src/app/interfaces/movies-response';
 })
 export class CarruselComponent implements OnInit {
   @Input() popularMovies: Movie[] = [];
-  @Input() imgUrl: string = '';
 
   constructor(
   ) {

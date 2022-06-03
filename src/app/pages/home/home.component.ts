@@ -12,7 +12,6 @@ import { ShareMoviesService } from '../../services/share-movies.service';
 })
 export class HomeComponent implements OnInit {
   movies: Movie[] = [];
-  imgUrl: string;
   popularMovies: Movie[] = [];
 
 
@@ -31,10 +30,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private api: ApiService,
-    private env: EnvService,
     private shareMoviesService: ShareMoviesService
   ) {
-    this.imgUrl = this.env.IMG_URL;
   }
 
   ngOnInit(): void {

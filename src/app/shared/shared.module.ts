@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { CarruselComponent } from './carrusel/carrusel.component';
 import { CardComponent } from './card/card.component';
 import { GridComponent } from './grid/grid.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 
@@ -26,7 +27,8 @@ import { GridComponent } from './grid/grid.component';
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    PipesModule
   ]
 })
 export class SharedModule { }
