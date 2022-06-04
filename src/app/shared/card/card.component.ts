@@ -8,7 +8,7 @@ import { Movie } from '../../interfaces/movies-response';
   ]
 })
 export class CardComponent implements OnInit {
-  @Input() movie!: Movie;
+  @Input() movie!: Movie; // Se recibe la pelicula desde el componente padre
 
   constructor() {
 

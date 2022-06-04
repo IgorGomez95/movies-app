@@ -7,6 +7,7 @@ import { map, tap } from 'rxjs/operators';
 
 import { EnvService } from './env.service';
 import { Movie, MoviesResponse } from '../interfaces/movies-response';
+import { Genre, GenresResponse } from '../interfaces/genres-response';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,12 @@ export class ApiService {
     }
   }
 
+  resetPages(){
+    this.topRatedPage = 1;
+  }
+
   getPopularMovies(): Observable<Movie[]> {
-    return  this.http.get<MoviesResponse>(`${ this.env.API_URL }popular`, { params: this.params }).pipe(
+    return  this.http.get<MoviesResponse>(`${ this.env.API_URL }movie/popular`, { params: this.params }).pipe(
       map( resp => resp.results )
     );
   }
@@ -37,12 +42,18 @@ export class ApiService {
     if( this.loading ) return of([]);
     this.loading = true;
     console.log('getTopRatedMoviesLoading');
-    return  this.http.get<MoviesResponse>(`${ this.env.API_URL }top_rated`, { params: {...this.params, page: this.topRatedPage} }).pipe(
+    return  this.http.get<MoviesResponse>(`${ this.env.API_URL }movie/top_rated`, { params: {...this.params, page: this.topRatedPage} }).pipe(
       map( resp => resp.results ),
       tap( () => {
         this.topRatedPage++;
         this.loading = false;
       })
+    );
+  }
+
+  getGenres(): Observable<Genre[]> {
+    return  this.http.get<GenresResponse>(`${ this.env.API_URL }genre/movie/list`, { params: this.params }).pipe(
+      map( resp => resp.genres )
     );
   }
 }

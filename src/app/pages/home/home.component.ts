@@ -1,8 +1,9 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Movie } from 'src/app/interfaces/movies-response';
+import { navOption } from 'src/app/interfaces/nav-options';
 import { ApiService } from 'src/app/services/api.service';
-import { EnvService } from 'src/app/services/env.service';
 import { ShareMoviesService } from '../../services/share-movies.service';
+import { Genre } from '../../interfaces/genres-response';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,33 @@ import { ShareMoviesService } from '../../services/share-movies.service';
   styles: [
   ]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  genres: Genre[] = [];
   movies: Movie[] = [];
   popularMovies: Movie[] = [];
+  navOptions: navOption[] = [
+    {
+      name: 'Mejor Valoradas',
+      option: 'valoradas',
+      isActive: true
+    },
+    {
+      name: 'Más Populares',
+      option: 'populares',
+      isActive: false
+    },
+    {
+      name: 'En Cines',
+      option: 'cines',
+      isActive: false
+    },
+    {
+      name: 'Próximamente',
+      option: 'proximamente',
+      isActive: false
+    }
+  ];
+  navOption: string = 'valoradas';
 
 
   @HostListener('window:scroll', ['$event'])
@@ -24,8 +49,6 @@ export class HomeComponent implements OnInit {
       this.getTopRatedMovies();
       console.log({scrollPosition, maxScrollPosition});
     }
-    // if(scrollPosition > maxScrollPosition){
-    // }
   }
 
   constructor(
@@ -36,23 +59,45 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPopularMovies();
+    this.getGenres();
     this.getTopRatedMovies();
   }
 
-  getTopRatedMovies():void{
+  getGenres(): void{
+    this.api.getGenres()
+      .subscribe( genres => {
+        this.genres = [...genres];
+      });
+  }
+
+  getTopRatedMovies(): void{
     this.api.getTopRatedMovies()
       .subscribe( movies => {
         this.movies.push(...movies);
-        this.shareMoviesService.shareMoviesObservableData = this.movies;
+        this.shareMoviesService.shareMoviesObservableData = this.movies;// Actualiza la información del observable
         console.log(this.movies);
       });
   }
 
-  // Obtiene las películas más populares y obtiene las primeras 4
-  getPopularMovies():void{
+  // Obtiene las películas más populares y almacena las primeras 4
+  getPopularMovies(): void{
     this.api.getPopularMovies()
       .subscribe( movies => {
-        this.popularMovies = movies.slice(0,4);
+        this.popularMovies = [...movies.slice(0,4)];
       });
+  }
+
+  // Cambia el estado de la opción seleccionada
+  changeOption(opt: navOption): void{
+    if( !opt.isActive){
+      this.navOptions.forEach( option => {
+        option.option === opt.option ? option.isActive = true : option.isActive = false;
+      });
+      this.navOption = opt.option;
+    }
+  }
+
+  ngOnDestroy(): void{
+    this.api.resetPages();
   }
 }
