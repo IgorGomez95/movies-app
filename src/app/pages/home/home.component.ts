@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       isActive: false
     }
   ];
-  navOption: string = 'valoradas';
+  navOptionSelected: string = 'valoradas';
 
   // Decorador que se ejecuta cuando se hace scroll
   @HostListener('window:scroll', ['$event'])
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const maxScrollPosition = (document.documentElement.scrollHeight || document.body.scrollHeight); // Obtiene la posición máxima del scroll
     if (scrollPosition >= maxScrollPosition) {
       if(this.api.loading) return; // Si está cargando no vuelve a hacer la petición para cargar más peliculas
-      this.getMoviesByOption(this.navOption);
+      this.getMoviesByOption(this.navOptionSelected);
     }
   }
 
@@ -101,17 +101,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
-  // Cambia el estado de la opción seleccionada
-  changeOption(opt: navOption): void{
-    if( !opt.isActive){
-      this.navOptions.forEach( option => {
-        option.option === opt.option ? option.isActive = true : option.isActive = false; // Cambia el estado de la opción seleccionada a true y las demás a false
-      });
-      this.navOption = opt.option; // Asigna la nueva opción al atributo navOption para que se pueda usar en el componente
-      this.movies.length = 0; // Limpia la lista de películas
-      this.api.resetPages(); // Resetea el contador de páginas
-      this.getMoviesByOption(this.navOption); // Obtiene las películas por la opción seleccionada
-    }
+  // Recibe la opción del navbar seleccionada por el usuario
+  changeOption(optionSelected: string): void{
+    this.navOptionSelected = optionSelected; // Asigna la nueva opción al atributo navOptionSelected para que se pueda usar en el scope del componente
+    this.movies = []; // Limpia la lista de películas
+    this.api.resetPages(); // Resetea el contador de páginas
+    this.getMoviesByOption(this.navOptionSelected); // Obtiene las películas por la opción seleccionada
   }
 
   getMoviesByOption(option: string): void{

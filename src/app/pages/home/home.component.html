@@ -3,22 +3,7 @@
     <app-carrusel [popularMovies]="popularMovies"></app-carrusel>
   </div>
   <div class="py-6 px-6 sm:px-10 lg:px-36">
-    <nav class="bg-gray-200 md:top-[4.6rem] top-[4.14rem] sm:top-[4.6rem] z-20 sticky overflow-x-auto scrollbar">
-      <div class="container px-1 py-4 mx-auto">
-        <div class="flex items-center justify-between">
-          <div class="flex-1 flex items-center justify-between">
-            <div class="flex flex-row items-center md:mx-8">
-              <button (click)="changeOption(opt)" *ngFor="let opt of navOptions"
-                      [disabled]="opt.isActive"
-                      [class]="opt.isActive ? 'text-white bg-blue-700' : 'text-gray-700 hover:bg-gray-300'"
-                      class="px-2 py-1 mx-1 md:mx-3 mt-2 text-sm font-bold transition-colors duration-200 transform rounded-md md:mt-0 select-none">
-                {{ opt.name }}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <app-navbar [navOptions]="navOptions" (navOptionSelected)="changeOption( $event )"></app-navbar>
     <app-grid></app-grid>
   </div>
 </div>
