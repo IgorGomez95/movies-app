@@ -1,4 +1,4 @@
-<div class="bg-white flex max-w-md mx-auto rounded-lg shadow-md">
+<div class="bg-white flex max-w-md mx-auto rounded-lg shadow-md wow animate__animated animate__fadeIn">
   <!-- ============================================================== -->
   <!-- Imagen -->
   <!-- ============================================================== -->
@@ -72,7 +72,17 @@
       <!-- ============================================================== -->
       <!-- Botón Agregar a watchlist-->
       <!-- ============================================================== -->
-      <button tooltip="Agregar a watchlist" placement="top" [showDelay]="50" tooltipClass="text-sm font-medium tooltip-theme" [hideDelay]="0" class="flex-none flex items-center justify-center w-9 h-9 rounded-full text-blue-700 bg-violet-50" type="button">
+      <button
+        *ngIf="!movie.isInWatchlist"
+        class="flex-none flex items-center justify-center w-9 h-9 rounded-full text-blue-700 hover:bg-blue-50 wow animate__animated animate__bounceIn"
+        (click)="addToWatchlist(movie)"
+        [hideDelay]="0"
+        placement="top"
+        [showDelay]="50"
+        tooltip="Agregar a watchlist"
+        tooltipClass="text-sm font-medium tooltip-theme"
+        type="button"
+      >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
         </svg>
@@ -80,6 +90,21 @@
       <!-- ============================================================== -->
       <!-- Fin botón Agregar a watchlist-->
       <!-- ============================================================== -->
+      <button
+        *ngIf="movie.isInWatchlist"
+        class="flex-none flex items-center justify-center w-9 h-9 rounded-full text-rose-700 hover:bg-rose-50 wow animate__animated animate__bounceIn"
+        (click)="addToWatchlist(movie)"
+        [hideDelay]="0"
+        placement="top"
+        [showDelay]="50"
+        tooltip="Eliminar de watchlist"
+        tooltipClass="text-sm font-medium tooltip-theme"
+        type="button"
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg>
+      </button>
     </div>
   </div>
   <!-- ============================================================== -->

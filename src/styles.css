@@ -39,3 +39,8 @@
     background: #1a56db;
   }
 }
+
+:root {
+  --animate-duration: 900ms;
+  --animate-delay: 0.4s;
+}

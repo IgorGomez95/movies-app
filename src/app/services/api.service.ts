@@ -6,6 +6,9 @@ import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { EnvService } from './env.service';
+
+import { LocalStorageService } from './local-storage.service';
+
 import { Movie, MoviesResponse } from '../interfaces/movies-response';
 import { Genre, GenresResponse } from '../interfaces/genres-response';
 
@@ -21,7 +24,8 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
-    private env: EnvService
+    private env: EnvService,
+    private localStorage: LocalStorageService
   ) { }
 
   get params(){
@@ -48,9 +52,12 @@ export class ApiService {
   getTopRatedMovies(): Observable<Movie[]> {
     if( this.loading ) return of([]);
     this.loading = true;
-    return  this.http.get<MoviesResponse>(`${ this.env.API_URL }movie/top_rated`, { params: {...this.params, page: this.topRatedPage} }).pipe(
-      map( resp => resp.results ),
-      tap( () => {
+    return this.http.get<MoviesResponse>(`${ this.env.API_URL }movie/top_rated`, { params: {...this.params, page: this.topRatedPage} }).pipe(
+      map( resp =>  { // map para transformar el objeto MoviesResponse para retornar sólo el arreglo de peliculas
+        resp.results = this.checkMoviesInWatchlist(resp.results);
+        return resp.results
+      }),
+      tap( () => { // tap es un operador que se ejecuta despues de que se ejecuta el observable
         this.topRatedPage++;
         this.loading = false;
       })
@@ -61,7 +68,10 @@ export class ApiService {
     if( this.loading ) return of([]);
     this.loading = true;
     return  this.http.get<MoviesResponse>(`${ this.env.API_URL }movie/popular`, { params: {...this.params, page: this.topPopularPage} }).pipe(
-      map( resp => resp.results ),
+      map( resp =>  {
+        resp.results = this.checkMoviesInWatchlist(resp.results);
+        return resp.results
+      }),
       tap( () => {
         this.topPopularPage++;
         this.loading = false;
@@ -73,7 +83,10 @@ export class ApiService {
     if( this.loading ) return of([]);
     this.loading = true;
     return  this.http.get<MoviesResponse>(`${ this.env.API_URL }movie/now_playing`, { params: {...this.params, page: this.inCinemasPage} }).pipe(
-      map( resp => resp.results ),
+      map( resp =>  {
+        resp.results = this.checkMoviesInWatchlist(resp.results);
+        return resp.results
+      }),
       tap( () => {
         this.inCinemasPage++;
         this.loading = false;
@@ -85,7 +98,10 @@ export class ApiService {
     if( this.loading ) return of([]);
     this.loading = true;
     return  this.http.get<MoviesResponse>(`${ this.env.API_URL }movie/upcoming`, { params: {...this.params, page: this.upcomingPage} }).pipe(
-      map( resp => resp.results ),
+      map( resp =>  {
+        resp.results = this.checkMoviesInWatchlist(resp.results);
+        return resp.results
+      }),
       tap( () => {
         this.upcomingPage++;
         this.loading = false;
@@ -93,9 +109,12 @@ export class ApiService {
     );
   }
 
-  getGenres(): Observable<Genre[]> {
-    return  this.http.get<GenresResponse>(`${ this.env.API_URL }genre/movie/list`, { params: this.params }).pipe(
-      map( resp => resp.genres )
-    );
+  // Método que recibe un arreglo de peliculas y checa si estan en la watchlist
+  checkMoviesInWatchlist(movies: Movie[]): Movie[] {
+    movies.map( async movie => {
+      const exists = await this.localStorage.existsMovie(movie.id);
+      exists ? movie.isInWatchlist = true : movie.isInWatchlist = false;
+    });
+    return movies;
   }
 }

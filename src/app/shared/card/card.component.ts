@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Movie } from '../../interfaces/movies-response';
 
 @Component({
@@ -7,14 +8,19 @@ import { Movie } from '../../interfaces/movies-response';
   styles: [
   ]
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
   @Input() movie!: Movie; // Se recibe la pelicula desde el componente padre
 
-  constructor() {
+  constructor(
+    private localStorageService: LocalStorageService
+  ) { }
 
-  }
-
-  ngOnInit(): void {
+  // Método para agregar o eliminar una pelicula de la watchlist
+  addToWatchlist(movie: Movie) {
+    this.localStorageService.saveDeleteMovieToWatchlist(movie); // Se guarda o elimina la pelicula en el storage
+    this.localStorageService.existsMovie(movie.id).then(exists => { // Se verifica si la pelicula ya esta en la watchlist
+      movie.isInWatchlist = exists; // Si esta en la watchlist, se asigna true, sino false
+    });
   }
 
 }
