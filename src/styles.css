@@ -11,15 +11,31 @@
   }
 }
 
-/* Ocultar componente en pantallas menores de 768px */
-@media (max-width: 768px) {
-  .sm\:hidden-user {
-    display: none;
-  }
-}
-
 .tooltip-theme{
   --tw-bg-opacity: 1 !important;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity)) !important;
   color: white !important;
+}
+
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #9ca3af;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #1a56db;
+  }
 }

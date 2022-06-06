@@ -14,6 +14,9 @@ import { Genre, GenresResponse } from '../interfaces/genres-response';
 })
 export class ApiService {
   topRatedPage = 1;
+  topPopularPage = 1;
+  inCinemasPage = 1;
+  upcomingPage = 1;
   loading = false;
 
   constructor(
@@ -28,8 +31,12 @@ export class ApiService {
     }
   }
 
+
   resetPages(){
     this.topRatedPage = 1;
+    this.topPopularPage = 1;
+    this.inCinemasPage = 1;
+    this.upcomingPage = 1;
   }
 
   getPopularMovies(): Observable<Movie[]> {
@@ -41,11 +48,46 @@ export class ApiService {
   getTopRatedMovies(): Observable<Movie[]> {
     if( this.loading ) return of([]);
     this.loading = true;
-    console.log('getTopRatedMoviesLoading');
     return  this.http.get<MoviesResponse>(`${ this.env.API_URL }movie/top_rated`, { params: {...this.params, page: this.topRatedPage} }).pipe(
       map( resp => resp.results ),
       tap( () => {
         this.topRatedPage++;
+        this.loading = false;
+      })
+    );
+  }
+
+  getTopPopularMovies(): Observable<Movie[]> {
+    if( this.loading ) return of([]);
+    this.loading = true;
+    return  this.http.get<MoviesResponse>(`${ this.env.API_URL }movie/popular`, { params: {...this.params, page: this.topPopularPage} }).pipe(
+      map( resp => resp.results ),
+      tap( () => {
+        this.topPopularPage++;
+        this.loading = false;
+      })
+    );
+  }
+
+  getMoviesInCinemas(): Observable<Movie[]> {
+    if( this.loading ) return of([]);
+    this.loading = true;
+    return  this.http.get<MoviesResponse>(`${ this.env.API_URL }movie/now_playing`, { params: {...this.params, page: this.inCinemasPage} }).pipe(
+      map( resp => resp.results ),
+      tap( () => {
+        this.inCinemasPage++;
+        this.loading = false;
+      })
+    );
+  }
+
+  getUpcomingMovies(): Observable<Movie[]> {
+    if( this.loading ) return of([]);
+    this.loading = true;
+    return  this.http.get<MoviesResponse>(`${ this.env.API_URL }movie/upcoming`, { params: {...this.params, page: this.upcomingPage} }).pipe(
+      map( resp => resp.results ),
+      tap( () => {
+        this.upcomingPage++;
         this.loading = false;
       })
     );
