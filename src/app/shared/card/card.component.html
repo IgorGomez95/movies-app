@@ -19,7 +19,15 @@
   <!-- Información de la película -->
   <!-- ============================================================== -->
   <div class="w-2/3 p-4 md:p-4">
-    <h1 class="text-base font-bold text-gray-800 line-clamp-1">{{ movie.title }}</h1>
+    <h1 class="text-base font-bold text-gray-800 line-clamp-1 cursor-pointer"
+      tooltip="{{ movie.title }}"
+      placement="top"
+      [showDelay]="50"
+      tooltipClass="text-xs tooltip-theme"
+      [hideDelay]="0"
+    >
+      {{ movie.title }}
+    </h1>
 
     <p class="mt-2 text-xs text-gray-600 line-clamp-2">{{ movie.overview || 'Sin sinopsis.' }}</p>
     <!-- ============================================================== -->
@@ -62,9 +70,9 @@
             <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
           </svg>
         </span>
-        <h1 class="text-lg font-bold text-gray-700 md:text-lg">
+        <h2 class="text-lg font-bold text-gray-700 md:text-lg">
           {{ movie.popularity | number: '1.1-2' }}
-        </h1>
+        </h2>
       </div>
       <!-- ============================================================== -->
       <!-- Fin popularidad de la película -->
@@ -75,7 +83,7 @@
       <button
         *ngIf="!movie.isInWatchlist"
         class="flex-none flex items-center justify-center w-9 h-9 rounded-full text-blue-700 hover:bg-blue-50 wow animate__animated animate__bounceIn"
-        (click)="addToWatchlist(movie)"
+        (click)="addOrDeleteFromWatchlist(movie)"
         [hideDelay]="0"
         placement="top"
         [showDelay]="50"
@@ -93,7 +101,7 @@
       <button
         *ngIf="movie.isInWatchlist"
         class="flex-none flex items-center justify-center w-9 h-9 rounded-full text-rose-700 hover:bg-rose-50 wow animate__animated animate__bounceIn"
-        (click)="addToWatchlist(movie)"
+        (click)="addOrDeleteFromWatchlist(movie)"
         [hideDelay]="0"
         placement="top"
         [showDelay]="50"

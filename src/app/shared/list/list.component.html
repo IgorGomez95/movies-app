@@ -1,0 +1,10 @@
+<ul class="rounded-md mt-4" [class]="watchlistHasMovies ? 'bg-white' : 'bg-red-600'">
+  <div *ngIf="watchlistHasMovies">
+    <app-list-item *ngFor="let movie of movies$ | async" [movie]="movie"></app-list-item>
+  </div>
+  <li *ngIf="!watchlistHasMovies" class="flex space-x-6 p-6 wow animate__animated animate__fadeIn">
+    <div class="min-w-0 relative flex-auto">
+      <h2 class="font-semibold text-white text-center truncate">Sin películas en tu watchlist.</h2>
+    </div>
+  </li>
+</ul>

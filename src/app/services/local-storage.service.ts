@@ -1,41 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Movie } from '../interfaces/movies-response';
+import { ShareMoviesService } from './share-movies.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
+  WATCHLIST_KEY = 'watchlist';
   watchlist: Movie[] = [];
 
-  constructor() {
+  constructor(
+    private shareMoviesService: ShareMoviesService
+  ) {
     this.loadWatchlist(); // Carga la watchlist del storage al iniciar el servicio
   }
 
   // Método para agregar o eliminar una pelicula de la watchlist
-  saveDeleteMovieToWatchlist(newMovie: Movie) {
-    let exists = false;
-    this.watchlist.find(movie => {
-      if (movie.id === newMovie.id) {
-        exists = true;
-      }
-    });
-    if (exists) {
+  saveDeleteMovieToWatchlist(newMovie: Movie): void {
+    const exists = this.watchlist.find(movie => movie.id === newMovie.id);
+    if (!!exists) {
       this.watchlist = this.watchlist.filter(movie => movie.id !== newMovie.id); // Si existe elimina la pelicula de la watchlist
     } else {
       this.watchlist.push(newMovie); // Si no existe la agrega a la watchlist
     }
-    localStorage.setItem('watchlist', JSON.stringify(this.watchlist)); // Guarda la watchlist en el storage
+    localStorage.setItem(this.WATCHLIST_KEY, JSON.stringify(this.watchlist)); // Guarda la watchlist en el storage
+    this.loadWatchlist(); // Carga la watchlist del storage
   }
 
   // Metodo para cargar la watchlist del storage
-  async loadWatchlist() {
-    const watchlist = await localStorage.getItem('watchlist');
+  async loadWatchlist(): Promise<Movie[]> {
+    const watchlist = await localStorage.getItem(this.WATCHLIST_KEY);
     this.watchlist = JSON.parse(watchlist) || []; // Si no hay nada en el storage, asigna un arreglo vacio
+    this.shareMoviesService.shareWatchlistObservableData = this.watchlist; // Se comparte la watchlist al componente padre
     return this.watchlist;
   }
 
   // Método para saber si una pelicula ya esta en la watchlist
-  async existsMovie(id: any){
+  async existsMovie(id: any): Promise<boolean> {
     await this.loadWatchlist();
     const exists = this.watchlist.find(movie => movie.id === id);
 

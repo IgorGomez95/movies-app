@@ -1,1 +1,11 @@
-<p>watchlist works!</p>
+<header class="bg-white shadow">
+  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-bold text-gray-900 wow animate__animated animate__bounce">Watchlist</h1>
+  </div>
+</header>
+<div class="mx-auto pb-6">
+  <div class="py-6 px-6 sm:px-10 lg:px-36">
+    <app-navbar [navOptions]="navOptions" (navOptionSelected)="changeOption( $event )"></app-navbar>
+    <app-list></app-list>
+  </div>
+</div>

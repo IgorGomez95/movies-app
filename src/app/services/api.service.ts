@@ -25,7 +25,7 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     private env: EnvService,
-    private localStorage: LocalStorageService
+    private localStorageService: LocalStorageService
   ) { }
 
   get params(){
@@ -112,7 +112,7 @@ export class ApiService {
   // Método que recibe un arreglo de peliculas y checa si estan en la watchlist
   checkMoviesInWatchlist(movies: Movie[]): Movie[] {
     movies.map( async movie => {
-      const exists = await this.localStorage.existsMovie(movie.id);
+      const exists = await this.localStorageService.existsMovie(movie.id);
       exists ? movie.isInWatchlist = true : movie.isInWatchlist = false;
     });
     return movies;

@@ -12,6 +12,8 @@ import { CardComponent } from './card/card.component';
 import { GridComponent } from './grid/grid.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ListComponent } from './list/list.component';
+import { ListItemComponent } from './list-item/list-item.component';
 
 
 
@@ -21,14 +23,17 @@ import { NavbarComponent } from './navbar/navbar.component';
     CarruselComponent,
     CardComponent,
     GridComponent,
-    NavbarComponent
+    NavbarComponent,
+    ListComponent,
+    ListItemComponent
   ],
   exports:[
     HeaderComponent,
     CarruselComponent,
     CardComponent,
     GridComponent,
-    NavbarComponent
+    NavbarComponent,
+    ListComponent
   ],
   imports: [
     CommonModule,
