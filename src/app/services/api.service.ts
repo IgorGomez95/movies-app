@@ -108,15 +108,16 @@ export class ApiService {
     );
   }
 
+  // Método para obtener la información de una pelicula por id
   getMovieDetails(id: number): Observable<Movie> {
     return this.http.get<Movie>(`${ this.env.API_URL }movie/${ id }`, { params: this.params }).pipe(
       map( movie => {
-        this.localStorageService.existsMovie(movie.id).then( exists => {
-          movie.isInWatchlist = exists;
+        this.localStorageService.existsMovie(movie.id).then( exists => { // Checa si la pelicula ya esta en la watchlist
+          movie.isInWatchlist = exists; // Se asigna el resultado true o false
         });
         return movie;
       }),
-      catchError( err => of(null))
+      catchError( err => of(null)) // Si hay un error se retorna un observable vacio
     );
   }
 

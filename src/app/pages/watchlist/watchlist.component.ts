@@ -11,7 +11,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
   ]
 })
 export class WatchlistComponent{
-  navOptions: navOption[] = [
+  navOptions: navOption[] = [ // Opciones del navbar
     {
       name: 'Fecha de Agregadas',
       option: 'fecha_agregada',

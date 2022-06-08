@@ -1,5 +1,9 @@
 
-  <section style="background-image: url({{ movie.backdrop_path | poster: 'backdrop' }});" class="text-gray-700 body-font bg-white h-full bg-options" *ngIf="movie">
+  <section
+    *ngIf="movie"
+    style="background-image: url({{ movie.backdrop_path | poster: 'backdrop' }});"
+    class="text-gray-700 body-font bg-white h-full bg-options"
+  >
     <div class="mx-auto flex px-5 py-16 h-full md:flex-row flex-col items-center" [class]="movie.backdrop_path ? 'backdrop-blur-sm bg-white/80' : ''">
       <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 flex flex-col md:items-end md:text-right items-center text-right">
         <img
