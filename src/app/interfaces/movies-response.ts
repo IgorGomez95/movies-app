@@ -20,5 +20,14 @@ export interface Movie {
   video:             boolean;
   vote_average:      number;
   vote_count:        number;
-  isInWatchlist:      boolean;
+  isInWatchlist:     boolean;
+  genres:            Genre[];
+  runtime:           number;
+  success:           boolean;
+  status:            string;
+}
+
+export interface Genre {
+  id:   number;
+  name: string;
 }

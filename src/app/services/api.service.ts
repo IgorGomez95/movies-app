@@ -3,14 +3,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 import { EnvService } from './env.service';
 
 import { LocalStorageService } from './local-storage.service';
 
 import { Movie, MoviesResponse } from '../interfaces/movies-response';
-import { Genre, GenresResponse } from '../interfaces/genres-response';
 
 @Injectable({
   providedIn: 'root'
@@ -106,6 +105,18 @@ export class ApiService {
         this.upcomingPage++;
         this.loading = false;
       })
+    );
+  }
+
+  getMovieDetails(id: number): Observable<Movie> {
+    return this.http.get<Movie>(`${ this.env.API_URL }movie/${ id }`, { params: this.params }).pipe(
+      map( movie => {
+        this.localStorageService.existsMovie(movie.id).then( exists => {
+          movie.isInWatchlist = exists;
+        });
+        return movie;
+      }),
+      catchError( err => of(null))
     );
   }
 

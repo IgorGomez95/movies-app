@@ -88,7 +88,7 @@ export class MoviegenresPipe implements PipeTransform {
   /**
     * Pipe para mostrar los géneros de una película
     * @param {number[]} movieGenres array de ids de géneros de una película.
-    * @return {string[]} poster regresa array de nombres de géneros de una película, si no hay géneros regresa un array vacío.
+    * @return {string[]} regresa array de nombres de géneros de una película, si no hay géneros regresa un array vacío.
   */
   transform(movieGenres: number[]): string[] {
     if (!movieGenres.length) return [];

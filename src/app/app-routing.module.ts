@@ -8,14 +8,15 @@ import { PagesRoutingModule } from './pages/pages.routing';
 import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
 
 const routes: Routes = [
-
   {path: '**', component: NopagefoundComponent},
 ];
 
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled', // restaurar el scroll
+    }),
     PagesRoutingModule
   ],
   exports: [RouterModule]

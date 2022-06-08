@@ -44,3 +44,12 @@
   --animate-duration: 900ms;
   --animate-delay: 0.4s;
 }
+
+.bg-options {
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  background-position: center center;
+  max-height: 100%;
+  max-width: 100%;
+}

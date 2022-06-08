@@ -1,15 +1,24 @@
-<div id="carouselExampleIndicators" class="carousel slide relative" data-bs-ride="carousel">
+<div id="carouselHome" class="carousel slide relative" data-bs-ride="carousel">
   <div class="carousel-inner relative w-full overflow-hidden">
     <!-- ============================================================== -->
     <!-- Slider Bucle -->
     <!-- ============================================================== -->
-    <div *ngFor="let movie of popularMovies; first as asFirst;" [class]="asFirst ? 'active':''" class="carousel-item float-left w-full">
-      <div class="container mx-auto flex px-28 py-16 md:flex-row flex-col items-center bg-[url('./assets/image_blur_bg.jpg')] bg-options">
+    <div
+      *ngFor="let movie of popularMovies; first as asFirst;"
+      [class]="asFirst ? 'active':''"
+      class="carousel-item float-left w-full"
+    >
+      <div
+        class="container mx-auto flex px-28 py-16 md:flex-row flex-col items-center bg-[url('./assets/image_blur_bg.jpg')] bg-options bg-fixed">
         <!-- ============================================================== -->
         <!-- Poster de la película -->
         <!-- ============================================================== -->
-        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-3 md:mb-0 flex flex-col md:items-end md:text-right items-end text-right">
-          <img class="object-cover object-center rounded shadow-md shadow-white/60" alt="hero" [src]="movie.poster_path | poster">
+        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-3 md:mb-0 flex flex-col md:items-end md:text-right items-center text-right">
+          <img
+            class="object-cover object-center rounded shadow-md shadow-white/60 wow animate__animated animate__zoomIn"
+            alt="hero"
+            [src]="movie.poster_path | poster"
+          >
         </div>
         <!-- ============================================================== -->
         <!-- Fin poster de la película -->
@@ -18,14 +27,31 @@
         <!-- Información de la película -->
         <!-- ============================================================== -->
         <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center lg:pr-4">
-          <div class="backdrop-blur-xl bg-black/50 rounded px-2 mb-3 shadow-sm shadow-white/60">
-            <h1 class="title-font md:text-3xl text-base mb-3 line-clamp-1 sm:line-clamp-3 font-semibold text-white">{{ movie.original_title }}</h1>
-            <p class="leading-relaxed line-clamp-2 sm:line-clamp-2 md:line-clamp-4 text-white text-sm">{{ movie.overview }}</p>
+          <div class="backdrop-blur-xl bg-black/50 rounded px-2 mb-3 shadow-sm shadow-white/60 wow animate__animated animate__fadeIn">
+            <h1 class="title-font md:text-3xl text-base mb-3 line-clamp-1 sm:line-clamp-3 font-semibold text-white wow animate__animated animate__pulse">
+              {{ movie.original_title }}
+            </h1>
+            <p class="leading-relaxed line-clamp-2 sm:line-clamp-2 md:line-clamp-4 text-white text-sm wow animate__animated animate__fadeIn">
+              {{ movie.overview }}
+            </p>
           </div>
-          <button type="button" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center">
+          <button
+            (click)="goToMovie(movie.id)"
+            type="button"
+            class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center wow animate__animated animate__bounceIn"
+          >
             Ver más
-            <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            <svg
+              class="w-5 h-5 ml-2 -mr-1"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
             </svg>
           </button>
         </div>
@@ -44,7 +70,7 @@
   <button
     class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
     type="button"
-    data-bs-target="#carouselExampleIndicators"
+    data-bs-target="#carouselHome"
     data-bs-slide="prev"
   >
     <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
@@ -53,7 +79,7 @@
   <button
     class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
     type="button"
-    data-bs-target="#carouselExampleIndicators"
+    data-bs-target="#carouselHome"
     data-bs-slide="next"
   >
     <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>

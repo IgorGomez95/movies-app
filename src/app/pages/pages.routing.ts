@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
+import { MovieComponent } from './movie/movie.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
     children:[
       {path:'home', component: HomeComponent},
       {path:'watchlist', component: WatchlistComponent},
+      {path:'movie/:id', component: MovieComponent},
       {path: '', redirectTo: '/home', pathMatch: 'full'},
     ]
   },

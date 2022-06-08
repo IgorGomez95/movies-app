@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Movie } from '../interfaces/movies-response';
 import { ShareMoviesService } from './share-movies.service';
 
+const WATCHLIST_KEY = 'watchlist';
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
-  WATCHLIST_KEY = 'watchlist';
   watchlist: Movie[] = [];
 
   constructor(
@@ -23,13 +23,13 @@ export class LocalStorageService {
     } else {
       this.watchlist.push(newMovie); // Si no existe la agrega a la watchlist
     }
-    localStorage.setItem(this.WATCHLIST_KEY, JSON.stringify(this.watchlist)); // Guarda la watchlist en el storage
+    localStorage.setItem(WATCHLIST_KEY, JSON.stringify(this.watchlist)); // Guarda la watchlist en el storage
     this.loadWatchlist(); // Carga la watchlist del storage
   }
 
   // Metodo para cargar la watchlist del storage
   async loadWatchlist(): Promise<Movie[]> {
-    const watchlist = await localStorage.getItem(this.WATCHLIST_KEY);
+    const watchlist = await localStorage.getItem(WATCHLIST_KEY);
     this.watchlist = JSON.parse(watchlist) || []; // Si no hay nada en el storage, asigna un arreglo vacio
     this.shareMoviesService.shareWatchlistObservableData = this.watchlist; // Se comparte la watchlist al componente padre
     return this.watchlist;

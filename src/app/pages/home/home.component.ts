@@ -12,7 +12,6 @@ import { Genre } from '../../interfaces/genres-response';
   ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  genres: Genre[] = [];
   movies: Movie[] = [];
   popularMovies: Movie[] = [];
   navOptions: navOption[] = [
