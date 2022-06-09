@@ -19,6 +19,10 @@ La aplicación fue creada en Angular v12 y Tailwind CSS v3
   - Observables
 - Virtual Scroll
 
+## Instalación
+- Descargar el último release del repositorio.
+- Correr el comando `npm install` para reconstruir las dependencias.
+- Correr el comando `ng serve`
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

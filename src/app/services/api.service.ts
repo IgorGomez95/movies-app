@@ -121,6 +121,16 @@ export class ApiService {
     );
   }
 
+  // Método para buscar peliculas por termino de busqueda
+  searchMovies(term: string): Observable<Movie[]> {
+    return this.http.get<MoviesResponse>(`${ this.env.API_URL }search/movie`, { params: {...this.params, page: 1, query: term} }).pipe(
+      map( resp =>  {
+        resp.results = this.checkMoviesInWatchlist(resp.results);
+        return resp.results
+      })
+    );
+  }
+
   // Método que recibe un arreglo de peliculas y checa si estan en la watchlist
   checkMoviesInWatchlist(movies: Movie[]): Movie[] {
     movies.map( async movie => {

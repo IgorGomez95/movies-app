@@ -12,6 +12,7 @@ import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { MovieComponent } from './movie/movie.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -21,12 +22,14 @@ import { PipesModule } from '../pipes/pipes.module';
     WatchlistComponent,
     PagesComponent,
     MovieComponent,
+    SearchComponent
   ],
   exports:[
     HomeComponent,
     WatchlistComponent,
     PagesComponent,
     MovieComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,

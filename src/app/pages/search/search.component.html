@@ -1,0 +1,15 @@
+<header class="bg-white shadow">
+  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-bold text-gray-900 wow animate__animated animate__bounce">Término de busqueda <strong class="capitalize">{{ term }}</strong></h1>
+  </div>
+</header>
+<div class="mx-auto pb-6">
+  <div class="py-6 px-6 sm:px-10 lg:px-36">
+    <app-grid></app-grid>
+    <li *ngIf="!movies.length" class="rounded-md bg-red-600 flex space-x-6 p-6 wow animate__animated animate__fadeIn">
+      <div class="min-w-0 relative flex-auto">
+        <h2 class="font-semibold text-white text-center truncate">No se encontraron películas por el término buscado.</h2>
+      </div>
+    </li>
+  </div>
+</div>
