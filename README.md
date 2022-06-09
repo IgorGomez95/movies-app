@@ -17,7 +17,7 @@ La aplicación fue creada en Angular v12 y Tailwind CSS v3
 - Comunicación entre componentes
   - Input/Output
   - Observables
-- Virtual Scroll
+- Infinite Scroll
 
 ## Instalación
 - Descargar el último release del repositorio.
