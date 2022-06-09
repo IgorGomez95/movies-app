@@ -1,4 +1,4 @@
-// Servicio encargado de recibir el set de movies actualizado y emitirlo a los componentes
+// Servicio encargado de recibir el set de movies y watchlist actualizado y emitirlo a los componentes
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Movie } from '../interfaces/movies-response';

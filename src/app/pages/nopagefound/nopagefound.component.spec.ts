@@ -1,25 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NopagefoundComponent } from './nopagefound.component';
 
-describe('NopagefoundComponent', () => {
-  let component: NopagefoundComponent;
-  let fixture: ComponentFixture<NopagefoundComponent>;
+describe('ApiService', () => {
+  let noPageFoundComponent: NopagefoundComponent;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ NopagefoundComponent ]
-    })
-    .compileComponents();
+    noPageFoundComponent = new NopagefoundComponent();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NopagefoundComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Debe de crearce correctamente', () => {
+    expect(noPageFoundComponent).toBeTruthy();
   });
 });

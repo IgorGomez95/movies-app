@@ -1,16 +1,13 @@
-import { TestBed } from '@angular/core/testing';
-
-import { ApiService } from './api.service';
+import { ApiService } from "./api.service";
 
 describe('ApiService', () => {
-  let service: ApiService;
+  let apiService: ApiService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ApiService);
+  beforeEach(async () => {
+    apiService = new ApiService(null, null, null);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('Debe de crearce correctamente', () => {
+    expect(apiService).toBeTruthy();
   });
 });

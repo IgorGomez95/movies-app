@@ -3,7 +3,6 @@ import { Movie } from 'src/app/interfaces/movies-response';
 import { navOption } from 'src/app/interfaces/nav-options';
 import { ApiService } from 'src/app/services/api.service';
 import { ShareMoviesService } from '../../services/share-movies.service';
-import { Genre } from '../../interfaces/genres-response';
 
 @Component({
   selector: 'app-home',
